@@ -37,7 +37,7 @@ var person = {
     age: 32
 };
 var copiedPerson = __assign({}, person); // brand new object with 'copied' properties
-// spread operator creates a comma-seperated list
+// rest operator creates a comma-seperated list
 var add = function () {
     var numbers = [];
     for (var _i = 0; _i < arguments.length; _i++) {

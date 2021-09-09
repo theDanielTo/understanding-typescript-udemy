@@ -37,7 +37,7 @@ const person = {
 
 const copiedPerson = { ...person } // brand new object with 'copied' properties
 
-// spread operator creates a comma-seperated list
+// rest operator creates a comma-seperated list
 const add = (...numbers:number[]) => {
   return numbers.reduce((curResult, curValue) => {
     return curResult + curValue;
