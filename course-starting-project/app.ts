@@ -1,20 +1,28 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  // if (typeof n1 !== 'number' || typeof n2 !== 'number') {
-  //   throw new Error('Incorrect input!')
-  // };
-  const result = n1 + n2;
-  if (showResult) {
-    console.log(phrase + result);
-  } else {
-    return result;
-  }
+function add(n1:number, n2:number) { // can explicitly set type :type (after parameters)
+  return n1 + n2;
 }
 
-// const number1 = '5';
-//error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
+function printResult(num:number) { // return type void (doesn't have return statement)
+  console.log('Result: ' + num);
+}
+// can explicitly set return value of 'undefined' if function has return statement
+// but doesn't return a value
 
-add(number1, number2, printResult, resultPhrase);
+function addAndHandle(n1:number, n2:number, cb:(num:number) => void) {
+  const result = n1 + n2;
+  cb(result);
+}
+
+printResult(add(5, 12));
+
+let combineValues: (a:number, b:number) => number;
+// any function that takes 2 numbers as parameters & returns a number
+combineValues = add;
+// combineValues = printResults; // doesn't match (num, num) => num
+// combineValues = 5; // doesn't match function type
+console.log(combineValues(8, 8));
+
+addAndHandle(10, 20, (result) => {
+  console.log('addAndHandle()', result);
+
+})
