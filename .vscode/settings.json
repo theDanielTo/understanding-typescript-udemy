@@ -2,6 +2,6 @@
   "workbench.settings.openDefaultKeybindings": true,
   "editor.quickSuggestions": true,
   "editor.snippetSuggestions": "top",
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrapColumn": 999999
 }
