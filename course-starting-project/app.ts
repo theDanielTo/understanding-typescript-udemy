@@ -1,28 +1,18 @@
-function add(n1:number, n2:number) { // can explicitly set type :type (after parameters)
-  return n1 + n2;
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = 'Daniel';
+if (typeof userInput === 'string') {
+  userName = userInput; // type unknown not assignable to type string
+  // have to type check for type unknowns
+  // use unknown if you don't know what you want to store in it
+  // kind of like any, but forces type checks
 }
 
-function printResult(num:number) { // return type void (doesn't have return statement)
-  console.log('Result: ' + num);
-}
-// can explicitly set return value of 'undefined' if function has return statement
-// but doesn't return a value
-
-function addAndHandle(n1:number, n2:number, cb:(num:number) => void) {
-  const result = n1 + n2;
-  cb(result);
+function generateError(message:string, code:number): never { // never return anything
+  throw { message: message, errorCode: code };
+  // while (true) {}
 }
 
-printResult(add(5, 12));
-
-let combineValues: (a:number, b:number) => number;
-// any function that takes 2 numbers as parameters & returns a number
-combineValues = add;
-// combineValues = printResults; // doesn't match (num, num) => num
-// combineValues = 5; // doesn't match function type
-console.log(combineValues(8, 8));
-
-addAndHandle(10, 20, (result) => {
-  console.log('addAndHandle()', result);
-
-})
+generateError('An error occured!', 500);
