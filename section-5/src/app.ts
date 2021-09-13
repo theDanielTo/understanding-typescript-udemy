@@ -4,7 +4,7 @@ class Department {
   // can preface with 'public' but not needed because it is public by default
   private employees:string[] = []; // private vars can only be accessed within class
 
-  constructor(private readonly id:string, public name:string) { // initialized in parameter list
+  constructor(private readonly id:string, public name:string) { // properties initialized in parameter list
     // this.id = id;
     // this.name = name;
   }
