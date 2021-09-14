@@ -23,9 +23,6 @@ var Department = (function () {
     Department.createEmployee = function (name) {
         return { name: name };
     };
-    Department.prototype.describe = function () {
-        console.log("Department: (" + this.id + "): " + this.name);
-    };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
     };
@@ -43,6 +40,9 @@ var ITDepartment = (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log("IT Department - ID:", this.id);
+    };
     return ITDepartment;
 }(Department));
 var AccountingDepartment = (function (_super) {
@@ -68,6 +68,9 @@ var AccountingDepartment = (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.prototype.describe = function () {
+        console.log('Accounting Department - ID:', this.id);
+    };
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === 'Daniel') {
             return;
@@ -91,11 +94,10 @@ it.addEmployee('Daniel');
 it.addEmployee('Bambi');
 it.describe();
 it.printEmployeeInformation();
-var accounting = new AccountingDepartment('d2', []);
+var accounting = new AccountingDepartment('d3', []);
 accounting.mostRecentReport = 'Year End Report';
 accounting.addReport('Something went wrong...');
 console.log(accounting.mostRecentReport);
 accounting.addEmployee('Daniel');
 accounting.addEmployee('Joe');
-accounting.printReports();
-accounting.printEmployeeInformation();
+accounting.describe();
