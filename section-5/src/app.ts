@@ -2,7 +2,9 @@ class Department {
   // private readonly id:number;
   // private name:string;
   // can preface with 'public' but not needed because it is public by default
-  private employees:string[] = []; // private vars can only be accessed within class
+  protected employees:string[] = [];
+  // protected props can be accessed only within class and other classes that extends this class
+  // private props can only be accessed within class
 
   constructor(private readonly id:string, public name:string) { // properties initialized in parameter list
     // this.id = id;
@@ -23,15 +25,72 @@ class Department {
   }
 }
 
-const accounting = new Department('d1', 'Accounting');
+class ITDepartment extends Department {
+  // admins:string[];
+  constructor(id:string, public admins:string[]) {
+    super(id, 'IT');
+    // this.admins = admins;
+  }
+}
+
+class AccountingDepartment extends Department {
+  private lastReport:string;
+
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found.');
+  }
+
+  set mostRecentReport(text:string) {
+    if (!text) throw new Error('Please pass in a valid value.');
+    this.addReport(text);
+  }
+
+  constructor(id:string, public reports:string[]) {
+    super(id, 'Accounting');
+    this.lastReport = reports[0];
+  }
+
+  addEmployee(name:string) {
+    if(name === 'Daniel') {
+      return;
+    }
+    this.employees.push(name)
+  }
+
+  addReport(text:string) {
+    this.reports.push(text);
+    this.lastReport = text;
+  }
+
+  printReports() {
+    console.log('Reports:', this.reports);
+  }
+}
+
+const itDepartment = new ITDepartment('d2', ['Bob', 'Buddy']);
+
+itDepartment.addEmployee('Daniel');
+itDepartment.addEmployee('Bambi');
+
+// itDepartment.employees[2] = 'Anna';
+
+itDepartment.describe();
+itDepartment.printEmployeeInformation();
+
+// const itDepartmentCopy = { name: 'DUMMY', describe: itDepartment.describe };
+// itDepartmentCopy.describe();
+
+const accounting = new AccountingDepartment('d2', []);
+
+accounting.mostRecentReport = 'Year End Report';
+accounting.addReport('Something went wrong...');
+console.log(accounting.mostRecentReport);
 
 accounting.addEmployee('Daniel');
-accounting.addEmployee('Bambi');
+accounting.addEmployee('Joe');
 
-// accounting.employees[2] = 'Anna';
-
-accounting.describe();
+accounting.printReports();
 accounting.printEmployeeInformation();
-
-// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
-// accountingCopy.describe();
