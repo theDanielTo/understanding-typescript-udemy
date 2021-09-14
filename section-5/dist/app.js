@@ -20,6 +20,9 @@ var Department = (function () {
         this.name = name;
         this.employees = [];
     }
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
     Department.prototype.describe = function () {
         console.log("Department: (" + this.id + "): " + this.name);
     };
@@ -30,12 +33,13 @@ var Department = (function () {
         console.log('Number of employees:', this.employees.length);
         console.log('List of employees:', this.employees);
     };
+    Department.fiscalYear = 2020;
     return Department;
 }());
 var ITDepartment = (function (_super) {
     __extends(ITDepartment, _super);
     function ITDepartment(id, admins) {
-        var _this = _super.call(this, id, 'IT') || this;
+        var _this = _super.call(this, id, "IT") || this;
         _this.admins = admins;
         return _this;
     }
@@ -79,11 +83,14 @@ var AccountingDepartment = (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
-var itDepartment = new ITDepartment('d2', ['Bob', 'Buddy']);
-itDepartment.addEmployee('Daniel');
-itDepartment.addEmployee('Bambi');
-itDepartment.describe();
-itDepartment.printEmployeeInformation();
+var employee1 = Department.createEmployee('Daniel');
+console.log('employee1:', employee1);
+console.log("Department.fiscalYear:", Department.fiscalYear);
+var it = new ITDepartment('d2', ['Bob', 'Buddy']);
+it.addEmployee('Daniel');
+it.addEmployee('Bambi');
+it.describe();
+it.printEmployeeInformation();
 var accounting = new AccountingDepartment('d2', []);
 accounting.mostRecentReport = 'Year End Report';
 accounting.addReport('Something went wrong...');

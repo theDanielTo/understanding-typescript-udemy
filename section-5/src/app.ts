@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2020;
   // private readonly id:number;
   // private name:string;
   // can preface with 'public' but not needed because it is public by default
@@ -9,6 +10,10 @@ class Department {
   constructor(private readonly id:string, public name:string) { // properties initialized in parameter list
     // this.id = id;
     // this.name = name;
+  }
+
+  static createEmployee(name:string) {
+    return { name:name };
   }
 
   describe(this:Department) { // describe can only be called by a Department obj
@@ -27,8 +32,8 @@ class Department {
 
 class ITDepartment extends Department {
   // admins:string[];
-  constructor(id:string, public admins:string[]) {
-    super(id, 'IT');
+  constructor(id: string, public admins: string[]) {
+    super(id, "IT");
     // this.admins = admins;
   }
 }
@@ -70,17 +75,21 @@ class AccountingDepartment extends Department {
   }
 }
 
-const itDepartment = new ITDepartment('d2', ['Bob', 'Buddy']);
+const employee1 = Department.createEmployee('Daniel');
+console.log('employee1:', employee1);
+console.log("Department.fiscalYear:", Department.fiscalYear);
 
-itDepartment.addEmployee('Daniel');
-itDepartment.addEmployee('Bambi');
+const it = new ITDepartment('d2', ['Bob', 'Buddy']);
 
-// itDepartment.employees[2] = 'Anna';
+it.addEmployee('Daniel');
+it.addEmployee('Bambi');
 
-itDepartment.describe();
-itDepartment.printEmployeeInformation();
+// it.employees[2] = 'Anna';
 
-// const itDepartmentCopy = { name: 'DUMMY', describe: itDepartment.describe };
+it.describe();
+it.printEmployeeInformation();
+
+// const itDepartmentCopy = { name: 'DUMMY', describe: it.describe };
 // itDepartmentCopy.describe();
 
 const accounting = new AccountingDepartment('d2', []);
