@@ -96,7 +96,12 @@ function moveAnimal(animal: Animal) {
     case 'horse':
       speed = animal.runningSpeed;
   }
-
   console.log('Moving with speed: ' + speed);
 }
 moveAnimal({ type: 'bird', flyingSpeed: 5 });
+
+// type casted HTMLInputElement (the exclamation mark means it will never be null)
+// const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+const userInputElement = document.getElementById('user-input') as HTMLInputElement;
+
+userInputElement.value = 'Hi There!';

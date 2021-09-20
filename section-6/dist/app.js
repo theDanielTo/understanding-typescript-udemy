@@ -62,3 +62,5 @@ function moveAnimal(animal) {
     console.log('Moving with speed: ' + speed);
 }
 moveAnimal({ type: 'bird', flyingSpeed: 5 });
+var userInputElement = document.getElementById('user-input');
+userInputElement.value = 'Hi There!';
