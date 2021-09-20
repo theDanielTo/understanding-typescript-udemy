@@ -64,3 +64,6 @@ function moveAnimal(animal) {
 moveAnimal({ type: 'bird', flyingSpeed: 5 });
 var userInputElement = document.getElementById('user-input');
 userInputElement.value = 'Hi There!';
+var errorBag = {
+    email: 'Not a valid email!'
+};

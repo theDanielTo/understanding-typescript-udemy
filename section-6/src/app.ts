@@ -102,6 +102,15 @@ moveAnimal({ type: 'bird', flyingSpeed: 5 });
 
 // type casted HTMLInputElement (the exclamation mark means it will never be null)
 // const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
-const userInputElement = document.getElementById('user-input') as HTMLInputElement;
+const userInputElement = document.getElementById('user-input')! as HTMLInputElement;
 
 userInputElement.value = 'Hi There!';
+
+// { email: 'Not a valid email;, username: 'Must start with a character!' }
+interface ErrorContainer {
+  [prop: string]: string; // arbitrary prop & value (index property)
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email!'
+};
