@@ -45,6 +45,12 @@ const fetchedUserData = {
 // console.log(fetchedUserData.job && fetchedUserData.job.title); // JS optional chaining
 console.log(fetchedUserData?.job?.title); // TS optional chaining
 
+// const userInput = '';
+const userInput = null;
+const storedData = userInput ?? 'DEFAULT'; // nullish coalescing. if null or undefined, use fall back value 'DEFAULT'
+
+console.log(storedData);
+
 
 // type UnknownEmployee = Employee | Admin;
 
