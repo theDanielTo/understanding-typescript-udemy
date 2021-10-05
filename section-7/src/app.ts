@@ -84,3 +84,27 @@ const numberStorage = new DataStorage<number>();
 // // ...
 // objStorage.removeItem(danielObj);
 // console.log(objStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+// Partial
+function createCourseGoal(
+  title: string,
+  description:
+  string, date: Date
+  ): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {}; // will eventually become CourseGoal
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+// Readonly => can't mutate
+const names: Readonly<string[]> = ['Daniel', 'Anna'];
+// names.push('Bambi');
+// names.pop();
