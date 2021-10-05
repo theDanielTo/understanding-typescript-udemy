@@ -24,3 +24,28 @@ function merge<T extends object, U extends object>(objA: T, objB: U) {
 const mergedObj = merge({ name: "Daniel", hobbies: ['Sports'] }, { age: 32 });
 // const mergedObj2 = merge({ name: "Daniel", hobbies: ['Sports'] }, 32); // 32 is not an object. silently fails
 console.log(mergedObj);
+
+interface Lengthy {
+  length: number;
+}
+
+// generic function with explicit return types
+// <T> makes element flexible
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+  let descriptionText = 'Got no value.';
+  if (element.length === 1) {
+    descriptionText = 'Got 1 elements.';
+  } else if (element.length > 1) {
+    descriptionText = 'Got ' + element.length + ' elements.';
+  }
+  return [element, descriptionText];
+}
+
+console.log(countAndDescribe(['Sports', 'Cooking']));
+
+// constraint: T is object, U needs to be a property of T
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+  return 'Value: ' + obj[key];
+}
+
+console.log(extractAndConvert({ name: 'Daniel' }, 'name'));
