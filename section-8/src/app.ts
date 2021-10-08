@@ -36,3 +36,31 @@ class Person {
 const person1 = new Person();
 
 console.log(person1);
+
+function Log(target: any, propName: string | Symbol) {
+  console.log('Property decorator!');
+  console.log(target, propName); // target => class prototype. propName => name of property
+}
+
+class Product {
+  @Log // property decorator
+  title: string;
+  private _price: number;
+
+  set price(val: number) {
+    if (val > 0) {
+      this._price = val;
+    } else {
+      throw new Error("Invalid price - should be positive.");
+    }
+  }
+
+  constructor(t: string, p: number) {
+    this.title = t;
+    this._price = p;
+  }
+
+  getPriceWithTax(tax: number) {
+    return this._price * (1 + tax);
+  }
+}
