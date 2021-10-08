@@ -37,9 +37,35 @@ const person1 = new Person();
 
 console.log(person1);
 
+// Property Decorator
 function Log(target: any, propName: string | Symbol) {
-  console.log('Property decorator!');
-  console.log(target, propName); // target => class prototype. propName => name of property
+  console.log('1: Property decorator!');
+  console.log('target:', target); // target => class prototype
+  console.log('propName', propName); // propName => name of property
+}
+
+// Accessor Decorator
+function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log('2: Accessor decorator!');
+  console.log('target:', target);
+  console.log('name:', name);
+  console.log('descriptor:', descriptor);
+}
+
+// Method Decorator
+function Log3(target: any, name: string | Symbol, descriptor: PropertyDescriptor) {
+  console.log("3: Method decorator!");
+  console.log("target:", target);
+  console.log("name:", name);
+  console.log("descriptor:", descriptor);
+}
+
+// Parameter Decorator
+function Log4(target: any, name: string | Symbol, position: number) {
+  console.log("4: Parameter decorator!");
+  console.log("target:", target);
+  console.log("name:", name); // name of method
+  console.log("position:", position); // position in parameter list
 }
 
 class Product {
@@ -47,6 +73,7 @@ class Product {
   title: string;
   private _price: number;
 
+  @Log2
   set price(val: number) {
     if (val > 0) {
       this._price = val;
@@ -60,7 +87,8 @@ class Product {
     this._price = p;
   }
 
-  getPriceWithTax(tax: number) {
+  @Log3
+  getPriceWithTax(@Log4 tax: number) {
     return this._price * (1 + tax);
   }
 }
