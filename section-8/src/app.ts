@@ -137,24 +137,34 @@ interface ValidatorConfig {
   }
 }
 
-const registeredValidator: ValidatorConfig = {};
+const registeredValidators: ValidatorConfig = {};
 
 function Required(target: any, propName: string) {
-  registeredValidator[target.constructor.name] = {
-    ...registeredValidator[target.constructor.name],
-    [propName]: ['required']
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    // [propName]: ['required']
+    [propName]: [
+      ...(registeredValidators[target.constructor.name]?.[propName] ?? []),
+      "required",
+    ]
+    // At the moment, only one validator value is stored in the array (e.g. 'required')
+    //Multiple values should be stored instead - at least potentially.
   };
 }
 
 function PositiveNumber(target: any, propName: string) {
-  registeredValidator[target.constructor.name] = {
-    ...registeredValidator[target.constructor.name],
-    [propName]: ["positive"],
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    // [propName]: ["positive"]
+    [propName]: [
+      ...(registeredValidators[target.constructor.name]?.[propName] ?? []),
+      "positive",
+    ]
   };
 }
 
 function validate(obj: any) {
-  const objValidatorConfig = registeredValidator[obj.constructor.name];
+  const objValidatorConfig = registeredValidators[obj.constructor.name];
   if (!objValidatorConfig) {
     return true;
   }
