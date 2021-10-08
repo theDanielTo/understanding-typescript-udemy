@@ -213,3 +213,7 @@ courseForm.addEventListener('submit', event => {
   }
   console.log(createdCourse);
 });
+
+// npm install class-validator => google typescript class-validator
+// angular is a framework that heavily rely decorators
+// nest.js server-side framework for node.js that use decorators
