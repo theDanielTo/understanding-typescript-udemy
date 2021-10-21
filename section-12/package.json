@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "build": "webpack"
   },
   "keywords": [
     "typescript",
@@ -13,7 +14,9 @@
   ],
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/lodash": "^4.14.176"
+  },
   "dependencies": {
     "lodash": "^4.17.21",
     "ts-loader": "^9.2.6",
