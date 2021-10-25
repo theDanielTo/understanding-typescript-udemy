@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const todoAddHandler = (text: string) => {
     const newId = `t${todos.length + 1}`;
     const newTodo = { id: newId, text: text };
-    setTodos([...todos, newTodo]);
+    setTodos(prevTodos => [...prevTodos, newTodo]);
   };
 
   return (
