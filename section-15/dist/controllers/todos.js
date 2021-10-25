@@ -3,18 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTodo = exports.updateTodo = exports.getTodos = exports.createTodo = void 0;
 const todo_1 = require("../models/todo");
 const TODOS = [];
-const createTodo = (req, res, next) => {
+const createTodo = (req, res, _) => {
     const text = req.body.text;
     const newTodo = new todo_1.Todo(Math.random().toString(), text);
     TODOS.push(newTodo);
     res.status(201).json({ message: 'Created a todo.', createTodo: newTodo });
 };
 exports.createTodo = createTodo;
-const getTodos = (req, res, next) => {
+const getTodos = (_, res, _2) => {
     res.json({ todos: TODOS });
 };
 exports.getTodos = getTodos;
-const updateTodo = (req, res, next) => {
+const updateTodo = (req, res, _) => {
     const todoId = req.params.id;
     const updatedText = req.body.text;
     const todoIndex = TODOS.findIndex(todo => todo.id === todoId);
@@ -25,7 +25,7 @@ const updateTodo = (req, res, next) => {
     res.json({ message: 'Updated!', updatedTodo: TODOS[todoIndex] });
 };
 exports.updateTodo = updateTodo;
-const deleteTodo = (req, res, next) => {
+const deleteTodo = (req, res, _) => {
     const todoId = req.params.id;
     const todoIndex = TODOS.findIndex((todo) => todo.id === todoId);
     if (todoIndex < 0) {
